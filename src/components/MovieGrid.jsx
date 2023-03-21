@@ -13,8 +13,8 @@ export default function MovieGrid({ movies }) {
         justify={"center"}
       >
         {movies.map((movie) => (
-          <Grid.Col sm={6} md={4} lg={3} xl={2.2}>
-            <MovieCard key={movie.imdbID} movieData={movie} />
+          <Grid.Col key={movie.imdbID} sm={6} md={4} lg={3} xl={2.2}>
+            <MovieCard movieData={movie} />
           </Grid.Col>
         ))}
       </Grid>
