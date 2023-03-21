@@ -14,6 +14,9 @@ const StyledDiv = styled.div`
     color: white;
     font-size: 3rem;
   }
+  button {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 `;
 
 export default function Home() {
@@ -50,8 +53,8 @@ export default function Home() {
           setSearchResult("");
         } else {
           setTotalPages(0);
-          if (res.data.Error === "No titles found!")
-            setSearchResult(res.data.Error + " Try Again");
+          if (res.data.Error === "Movie not found!")
+            setSearchResult(" No titles found! Try Again");
           if (res.data.Error === "Too many results.")
             setSearchResult(res.data.Error + " Be more specific");
         }
@@ -100,6 +103,7 @@ export default function Home() {
           }}
         >
           <Pagination
+            color={"rgba(0,0,0,0.5)"}
             value={activePage}
             onChange={handlePagination}
             total={totalPages}
@@ -117,7 +121,7 @@ export default function Home() {
 
 const findTotalPages = (totalResults) => {
   let pages = totalResults / 10;
-  if (pages % 10 !== 0) {
+  if (totalResults % 10 !== 0) {
     pages++;
   }
   return pages;

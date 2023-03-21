@@ -23,6 +23,12 @@ const StyledDiv = styled.div`
     align-self: end;
     border-radius: 0.5rem;
   }
+  input,
+  button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-color: white;
+  }
 `;
 
 export default function Search({ onSubmit }) {

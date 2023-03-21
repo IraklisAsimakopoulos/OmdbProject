@@ -23,7 +23,7 @@ export default function NoPage() {
     <StyledDiv>
       <p>404 Page not Found!</p>
       <p>You will be redirected to home in:</p>
-      <Loader />
+      <Loader style={{ marginTop: "100px" }} />
     </StyledDiv>
   );
 }
