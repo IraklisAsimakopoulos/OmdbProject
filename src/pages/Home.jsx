@@ -34,7 +34,7 @@ export default function Home() {
       url += "&s=" + searchData.search;
 
       if (searchData.type && searchData.type !== "") {
-        url += "&t=" + searchData.type;
+        url += "&type=" + searchData.type;
       }
       if (searchData.year && searchData.year !== "") {
         url += "&y=" + searchData.year;
@@ -50,7 +50,7 @@ export default function Home() {
           setSearchResult("");
         } else {
           setTotalPages(0);
-          if (res.data.Error === "Movie not found!")
+          if (res.data.Error === "No titles found!")
             setSearchResult(res.data.Error + " Try Again");
           if (res.data.Error === "Too many results.")
             setSearchResult(res.data.Error + " Be more specific");
