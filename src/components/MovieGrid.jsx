@@ -14,7 +14,7 @@ export default function MovieGrid({ movies }) {
       >
         {movies.map((movie) => (
           <Grid.Col sm={6} md={4} lg={3} xl={2.2}>
-            <MovieCard key="movie.imdbID" movieData={movie} />
+            <MovieCard key={movie.imdbID} movieData={movie} />
           </Grid.Col>
         ))}
       </Grid>
