@@ -5,7 +5,6 @@ import styled from "styled-components";
 import apikey from "../apikey";
 import MovieGrid from "../components/MovieGrid";
 import Search from "../components/Search";
-import { useNavigate } from "react-router-dom";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -25,12 +24,7 @@ export default function Home() {
   const [searchData, setSearchData] = useState({});
   const [totalPages, setTotalPages] = useState(0);
   const [searchResult, setSearchResult] = useState("Search to find results!");
-  const navigate = useNavigate();
 
-  const handleMoreMovieInfo = (id) => {
-    const url = "/movie/" + id;
-    navigate(url);
-  };
   const handleSearch = (searchData, page) => {
     let url = "http://www.omdbapi.com/?apikey=" + apikey;
     if (searchData.search && searchData.search !== "") {
@@ -90,9 +84,7 @@ export default function Home() {
         <Search onSubmit={handleSubmit} />
       </div>
       <div style={{ padding: "50px" }}>
-        {movies !== [] && (
-          <MovieGrid onMoreMovieInfo={handleMoreMovieInfo} movies={movies} />
-        )}
+        {movies !== [] && <MovieGrid movies={movies} />}
       </div>
       {totalPages !== 0 && (
         <div

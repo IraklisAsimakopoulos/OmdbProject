@@ -1,22 +1,30 @@
 import { Card, Image, Button, Title } from "@mantine/core";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import FavoriteIcon from "./FavoriteIcon";
 
-export default function MovieCard({ movieData, onMoreMovieInfo }) {
+const StyledDiv = styled.div`
+  h1,
+  h2,
+  h3 {
+    padding: 10px;
+    color: white;
+  }
+`;
+const FlexDiv = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+`;
+
+export default function MovieCard({ movieData }) {
+  const navigate = useNavigate();
+
   const handleMoreMovieInfo = () => {
-    if (movieData) {
-      onMoreMovieInfo(movieData.imdbID);
-    }
+    const url = "/movie/" + movieData.imdbID;
+    navigate(url);
   };
-
-  const StyledDiv = styled.div`
-    h1,
-    h2,
-    h3 {
-      padding: 10px;
-      color: white;
-    }
-  `;
 
   return (
     movieData && (
@@ -52,18 +60,19 @@ export default function MovieCard({ movieData, onMoreMovieInfo }) {
               Release Year: {movieData.Year}
             </Title>
           )}
-
-          <Button
-            onClick={() => handleMoreMovieInfo()}
-            variant="light"
-            color="blue"
-            fullWidth
-            mt="md"
-            radius="md"
-            style={{ color: "white", backgroundColor: "rgba(0,0,0,0.5)" }}
-          >
-            Watch more info...
-          </Button>
+          <FlexDiv>
+            <Button
+              onClick={() => handleMoreMovieInfo()}
+              variant="light"
+              color="blue"
+              fullWidth
+              radius="md"
+              style={{ color: "white", backgroundColor: "rgba(0,0,0,0.5)" }}
+            >
+              Watch more info...
+            </Button>
+            <FavoriteIcon movie={movieData} />
+          </FlexDiv>
         </Card>
       </StyledDiv>
     )

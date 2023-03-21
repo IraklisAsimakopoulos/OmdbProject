@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "@mantine/core";
 import MovieCard from "./MovieCard";
 
-export default function MovieGrid({ movies, onMoreMovieInfo }) {
+export default function MovieGrid({ movies }) {
   return (
     movies && (
       <Grid
@@ -14,11 +14,7 @@ export default function MovieGrid({ movies, onMoreMovieInfo }) {
       >
         {movies.map((movie) => (
           <Grid.Col sm={6} md={4} lg={3} xl={2.2}>
-            <MovieCard
-              onMoreMovieInfo={onMoreMovieInfo}
-              key="movie.imdbID"
-              movieData={movie}
-            />
+            <MovieCard key="movie.imdbID" movieData={movie} />
           </Grid.Col>
         ))}
       </Grid>

@@ -1,25 +1,24 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import MovieGrid from "../components/MovieGrid";
 
 export default function Favorites() {
-  const [data, setData] = useState([]);
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    jsonObjects().then((res) => {
-      console.log(typeof res.data.Search);
-      setData(res.data.Search);
-    });
+    const favorites = localStorage.getItem("favorites");
+    console.log(favorites);
+    if (favorites) {
+      setMovies(JSON.parse(favorites));
+    }
   }, []);
 
   return (
-    <div>
-      {data.map((movie) => (
-        <div key={String(movie.Title)}>{movie.Title}</div>
-      ))}
+    <div style={{ width: "100%", padding: "50px" }}>
+      {movies.length > 0 ? (
+        <MovieGrid movies={movies} />
+      ) : (
+        <h2>There are no favorite movies</h2>
+      )}
     </div>
   );
 }
-
-const jsonObjects = () => {
-  return axios.get("http://www.omdbapi.com/?apikey=3f927343&s=whale&t=comedy");
-};
